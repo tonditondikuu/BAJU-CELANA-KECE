@@ -1,257 +1,342 @@
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Gallery Produk</title>
+  <title>CHITATO STORE</title>
 
   <style>
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #111827, #1e293b);
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(8, 12, 30, 0.78), rgba(8, 12, 30, 0.9)),
+        url("https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=2000&q=80");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
       color: white;
-      padding: 30px;
+    }
+
+    header {
+      text-align: center;
+      padding: 45px 20px 30px;
+    }
+
+    header h1 {
+      font-size: 42px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      text-shadow: 0 0 20px rgba(255,255,255,0.5);
+    }
+
+    header p {
+      margin-top: 10px;
+      color: #d5d9ff;
+      font-size: 16px;
     }
 
     .container {
+      width: 92%;
       max-width: 1400px;
       margin: auto;
+      padding-bottom: 50px;
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 30px;
-      font-size: 36px;
-      color: #ffffff;
-    }
-
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 25px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 18px;
+    .table-box {
+      background: rgba(255,255,255,0.08);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-      transition: 0.3s;
-      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
     }
 
-    .card:hover {
-      transform: translateY(-8px);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
-    }
-
-    .card img {
+    table {
       width: 100%;
-      height: 220px;
-      object-fit: cover;
-      display: block;
-      background: #000;
+      border-collapse: collapse;
     }
 
-    .content {
-      padding: 18px;
+    th {
+      background: rgba(0,0,0,0.55);
+      padding: 20px;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
-    .product-name {
-      font-size: 20px;
+    td {
+      padding: 16px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      vertical-align: middle;
+    }
+
+    tr:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    .number {
       font-weight: bold;
-      margin-bottom: 10px;
+      font-size: 18px;
+    }
+
+    .product-image {
+      width: 120px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 2px solid rgba(255,255,255,0.3);
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
     }
 
     .price {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: bold;
-      color: #22c55e;
-      margin-bottom: 15px;
+      color: #7CFFB2;
+      text-shadow: 0 0 10px rgba(124,255,178,0.3);
     }
 
-    .button {
-      display: block;
-      text-align: center;
-      text-decoration: none;
-      background: #2563eb;
-      color: white;
-      padding: 12px;
+    .btn {
+      display: inline-block;
+      padding: 10px 18px;
       border-radius: 10px;
+      background: linear-gradient(135deg, #7c3aed, #2563eb);
+      color: white;
+      text-decoration: none;
       font-weight: bold;
       transition: 0.3s;
     }
 
-    .button:hover {
-      background: #1d4ed8;
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(37,99,235,0.5);
     }
 
-    @media (max-width: 600px) {
-      body {
-        padding: 15px;
-      }
-
-      h1 {
+    @media (max-width: 768px) {
+      header h1 {
         font-size: 28px;
       }
 
-      .gallery {
-        grid-template-columns: 1fr;
+      .table-box {
+        overflow-x: auto;
+      }
+
+      table {
+        min-width: 700px;
       }
     }
   </style>
-
 </head>
 
 <body>
 
-  <div class="container">
+<header>
+  <h1>Gallery Produk</h1>
+  <p>Daftar gambar dan harga produk</p>
+</header>
 
-```
-<h1>🖼️ GALLERY PRODUK</h1>
+<div class="container">
+  <div class="table-box">
 
-<div class="gallery">
+    <table>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Gambar</th>
+          <th>Harga</th>
+          <th>Link</th>
+        </tr>
+      </thead>
 
-  <!-- PRODUK 1 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_1" alt="Produk 1">
-    <div class="content">
-      <div class="product-name">Produk 1</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/gLpkG36V"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
+      <tbody id="productTable"></tbody>
+
+    </table>
+
   </div>
-
-  <!-- PRODUK 2 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_2" alt="Produk 2">
-    <div class="content">
-      <div class="product-name">Produk 2</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/BVMbn55W"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
-  </div>
-
-  <!-- PRODUK 3 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_3" alt="Produk 3">
-    <div class="content">
-      <div class="product-name">Produk 3</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/Lh6Dqbsw"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
-  </div>
-
-  <!-- PRODUK 4 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_4" alt="Produk 4">
-    <div class="content">
-      <div class="product-name">Produk 4</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/8gMZLntp"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
-  </div>
-
-  <!-- PRODUK 5 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_5" alt="Produk 5">
-    <div class="content">
-      <div class="product-name">Produk 5</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/ns4266gM"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
-  </div>
-
-  <!-- PRODUK 6 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_6" alt="Produk 6">
-    <div class="content">
-      <div class="product-name">Produk 6</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/xKWWfHLQ"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
-  </div>
-
-  <!-- PRODUK 7 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_7" alt="Produk 7">
-    <div class="content">
-      <div class="product-name">Produk 7</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/Sh0HDBc"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
-  </div>
-
-  <!-- PRODUK 8 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_8" alt="Produk 8">
-    <div class="content">
-      <div class="product-name">Produk 8</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/JwRY2tyj"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
-  </div>
-
-  <!-- PRODUK 9 -->
-  <div class="card">
-    <img src="DIRECT_IMAGE_URL_9" alt="Produk 9">
-    <div class="content">
-      <div class="product-name">Produk 9</div>
-      <div class="price">£100</div>
-      <a class="button"
-         href="https://ibb.co/bjymc3Yd"
-         target="_blank">
-         Lihat Gambar
-      </a>
-    </div>
-  </div>
-
-  <!-- TAMBAHKAN PRODUK LAIN DENGAN FORMAT YANG SAMA -->
-
 </div>
-```
 
-  </div>
+<script>
+
+const products = [
+
+  {
+    image: "https://ibb.co/gLpkG36V",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/BVMbn55W",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/Lh6Dqbsw",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/8gMZLntp",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/ns4266gM",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/xKWWfHLQ",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/Sh0HDBc",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/JwRY2tyj",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/bjymc3Yd",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/rGpdchHw",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/r2d9ssg8",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/0jBxkRZC",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/HfnQhLmk",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/jPCrxHPf",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/s9TfB85Z",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/TD23gpp2",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/mV8xf1KK",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/tPWjBSpm",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/QvQqxZMx",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/LXSc8y1m",
+    price: "$20.00""
+  },
+  {
+    image: "https://ibb.co/DfjX0jyK",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/5htGz6zq",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/pvn7R31b",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/NnfLtqwy",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/QFGDHjX0",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/mFbmYp8X",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/JWKP8bs6",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/SL7M7YC",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/5gDZTk5d",
+    price: "$20.00"
+  },
+  {
+    image: "https://ibb.co/TDdKq3LT",
+    price: "$18.00"
+  },
+  {
+    image: "https://ibb.co/V0pyPxTJ",
+    price: "$18.00"
+  },
+  {
+    image: "https://ibb.co/Zp3DctF3",
+    price: "$18.00"
+  }
+
+];
+
+const table = document.getElementById("productTable");
+
+products.forEach((product, index) => {
+
+  const row = document.createElement("tr");
+
+  row.innerHTML = `
+    <td class="number">${index + 1}</td>
+
+    <td>
+      <img
+        src="${product.image}"
+        alt="Produk ${index + 1}"
+        class="product-image"
+      >
+    </td>
+
+    <td class="price">
+      ${product.price}
+    </td>
+
+    <td>
+      <a
+        href="${product.image}"
+        target="_blank"
+        class="btn"
+      >
+        Lihat Gambar
+      </a>
+    </td>
+  `;
+
+  table.appendChild(row);
+
+});
+
+</script>
 
 </body>
 </html>
