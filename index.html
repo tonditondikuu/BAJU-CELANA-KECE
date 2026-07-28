@@ -1,636 +1,257 @@
 <!DOCTYPE html>
+
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>CHITATO STORE</title>
+  <title>Gallery Produk</title>
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);
-      min-height: 100vh;
-      color: #fff;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #111827, #1e293b);
+      color: white;
+      padding: 30px;
     }
 
     .container {
-      width: 95%;
       max-width: 1400px;
       margin: auto;
-      padding: 30px 0 50px;
     }
 
-    header {
+    h1 {
       text-align: center;
       margin-bottom: 30px;
+      font-size: 36px;
+      color: #ffffff;
     }
 
-    header h1 {
-      font-size: 38px;
-      font-weight: 800;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    header p {
-      color: #cbd5e1;
-      font-size: 16px;
-    }
-
-    .toolbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin-bottom: 25px;
-      flex-wrap: wrap;
-    }
-
-    .search-box {
-      flex: 1;
-      min-width: 250px;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 14px 18px;
-      border: 1px solid rgba(255,255,255,0.15);
-      border-radius: 12px;
-      background: rgba(255,255,255,0.08);
-      color: white;
-      outline: none;
-      font-size: 15px;
-      backdrop-filter: blur(10px);
-    }
-
-    .search-box input::placeholder {
-      color: #cbd5e1;
-    }
-
-    .total {
-      padding: 13px 20px;
-      border-radius: 12px;
-      background: rgba(255,255,255,0.1);
-      color: #e2e8f0;
-      white-space: nowrap;
-    }
-
-    .products {
+    .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 22px;
+      gap: 25px;
     }
 
     .card {
-      background: rgba(255,255,255,0.09);
-      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255, 255, 255, 0.08);
       border-radius: 18px;
       overflow: hidden;
-      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-      backdrop-filter: blur(12px);
-      transition: 0.3s ease;
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
-    }
-
-    .image-box {
-      height: 220px;
-      background: linear-gradient(135deg, #1e293b, #334155);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-
-    .image-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .image-placeholder {
-      text-align: center;
-      padding: 20px;
-      color: #cbd5e1;
-    }
-
-    .image-placeholder .icon {
-      font-size: 45px;
-      display: block;
-      margin-bottom: 10px;
-    }
-
-    .card-content {
-      padding: 20px;
-    }
-
-    .item-number {
-      color: #94a3b8;
-      font-size: 13px;
-      margin-bottom: 7px;
-    }
-
-    .card h3 {
-      font-size: 20px;
-      margin-bottom: 12px;
-    }
-
-    .price-label {
-      color: #94a3b8;
-      font-size: 12px;
-      margin-bottom: 4px;
-    }
-
-    .price {
-      color: #4ade80;
-      font-size: 23px;
-      font-weight: bold;
-      margin-bottom: 18px;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 10px;
-    }
-
-    .btn {
-      flex: 1;
-      text-align: center;
-      text-decoration: none;
-      padding: 12px 10px;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 14px;
-      transition: 0.25s;
-    }
-
-    .btn-view {
-      background: linear-gradient(135deg, #3b82f6, #6366f1);
-      color: white;
-    }
-
-    .btn-view:hover {
-      transform: scale(1.03);
-    }
-
-    .btn-price {
-      background: rgba(255,255,255,0.1);
-      color: white;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      transition: 0.3s;
       border: 1px solid rgba(255,255,255,0.15);
     }
 
-    footer {
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+    }
+
+    .card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      background: #000;
+    }
+
+    .content {
+      padding: 18px;
+    }
+
+    .product-name {
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 22px;
+      font-weight: bold;
+      color: #22c55e;
+      margin-bottom: 15px;
+    }
+
+    .button {
+      display: block;
       text-align: center;
-      color: #94a3b8;
-      margin-top: 40px;
-      font-size: 14px;
+      text-decoration: none;
+      background: #2563eb;
+      color: white;
+      padding: 12px;
+      border-radius: 10px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
     }
 
     @media (max-width: 600px) {
-      .container {
-        width: 92%;
-        padding-top: 20px;
+      body {
+        padding: 15px;
       }
 
-      header h1 {
+      h1 {
         font-size: 28px;
       }
 
-      .products {
+      .gallery {
         grid-template-columns: 1fr;
-      }
-
-      .image-box {
-        height: 240px;
       }
     }
   </style>
+
 </head>
 
 <body>
 
   <div class="container">
 
-    <header>
-      <h1>PRODUCT GALLERY</h1>
-      <p>Daftar Produk & Harga</p>
-    </header>
+```
+<h1>🖼️ GALLERY PRODUK</h1>
 
-    <div class="toolbar">
-      <div class="search-box">
-        <input
-          type="text"
-          id="searchInput"
-          placeholder="Cari produk berdasarkan nomor..."
-          onkeyup="searchProducts()"
-        >
-      </div>
+<div class="gallery">
 
-      <div class="total">
-        Total: <strong id="totalItems">30</strong> Item
-      </div>
+  <!-- PRODUK 1 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_1" alt="Produk 1">
+    <div class="content">
+      <div class="product-name">Produk 1</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/gLpkG36V"
+         target="_blank">
+         Lihat Gambar
+      </a>
     </div>
+  </div>
 
-    <div class="products" id="productList"></div>
+  <!-- PRODUK 2 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_2" alt="Produk 2">
+    <div class="content">
+      <div class="product-name">Produk 2</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/BVMbn55W"
+         target="_blank">
+         Lihat Gambar
+      </a>
+    </div>
+  </div>
 
-    <footer>
-      © 2026 Product Gallery — All Rights Reserved
-    </footer>
+  <!-- PRODUK 3 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_3" alt="Produk 3">
+    <div class="content">
+      <div class="product-name">Produk 3</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/Lh6Dqbsw"
+         target="_blank">
+         Lihat Gambar
+      </a>
+    </div>
+  </div>
+
+  <!-- PRODUK 4 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_4" alt="Produk 4">
+    <div class="content">
+      <div class="product-name">Produk 4</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/8gMZLntp"
+         target="_blank">
+         Lihat Gambar
+      </a>
+    </div>
+  </div>
+
+  <!-- PRODUK 5 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_5" alt="Produk 5">
+    <div class="content">
+      <div class="product-name">Produk 5</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/ns4266gM"
+         target="_blank">
+         Lihat Gambar
+      </a>
+    </div>
+  </div>
+
+  <!-- PRODUK 6 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_6" alt="Produk 6">
+    <div class="content">
+      <div class="product-name">Produk 6</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/xKWWfHLQ"
+         target="_blank">
+         Lihat Gambar
+      </a>
+    </div>
+  </div>
+
+  <!-- PRODUK 7 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_7" alt="Produk 7">
+    <div class="content">
+      <div class="product-name">Produk 7</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/Sh0HDBc"
+         target="_blank">
+         Lihat Gambar
+      </a>
+    </div>
+  </div>
+
+  <!-- PRODUK 8 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_8" alt="Produk 8">
+    <div class="content">
+      <div class="product-name">Produk 8</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/JwRY2tyj"
+         target="_blank">
+         Lihat Gambar
+      </a>
+    </div>
+  </div>
+
+  <!-- PRODUK 9 -->
+  <div class="card">
+    <img src="DIRECT_IMAGE_URL_9" alt="Produk 9">
+    <div class="content">
+      <div class="product-name">Produk 9</div>
+      <div class="price">£100</div>
+      <a class="button"
+         href="https://ibb.co/bjymc3Yd"
+         target="_blank">
+         Lihat Gambar
+      </a>
+    </div>
+  </div>
+
+  <!-- TAMBAHKAN PRODUK LAIN DENGAN FORMAT YANG SAMA -->
+
+</div>
+```
 
   </div>
 
-  <script>
-
-    /*
-      CATATAN:
-      Link ibb.co adalah link halaman ImgBB.
-      Untuk menampilkan gambar otomatis, masukkan
-      URL GAMBAR LANGSUNG ke bagian imageUrl.
-
-      Contoh:
-      imageUrl: "https://i.ibb.co/xxxxx/nama-gambar.jpg"
-
-      Jika imageUrl kosong, kartu akan menampilkan
-      placeholder dan tombol "Buka Gambar".
-    */
-
-    const products = [
-
-      {
-        no: 1, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/gLpkG36V",
-        imageUrl: "https://ibb.co/gLpkG36V"
-      },
-
-      {
-        no: 2, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/BVMbn55W",
-        imageUrl: "https://ibb.co/BVMbn55W"
-      },
-
-      {
-        no: 3, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/Lh6Dqbsw",
-        imageUrl: "https://ibb.co/Lh6Dqbsw"
-      },
-
-      {
-        no: 4, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/8gMZLntp",
-        imageUrl: "https://ibb.co/8gMZLntp"
-      },
-
-      {
-        no: 5, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/Lh6Dqbsw",
-        imageUrl: "https://ibb.co/Lh6Dqbsw"
-      },
-
-      {
-        no: 6, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/ns4266gM",
-        imageUrl: "https://ibb.co/ns4266gM"
-      },
-
-      {
-        no: 7, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/xKWWfHLQ",
-        imageUrl: "https://ibb.co/xKWWfHLQ"
-      },
-
-      {
-        no: 8, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/Sh0HDBc",
-        imageUrl: "https://ibb.co/Sh0HDBc"
-      },
-
-      {
-        no: 9, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/JwRY2tyj",
-        imageUrl: "https://ibb.co/JwRY2tyj"
-      },
-
-      {
-        no: 10, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/bjymc3Yd",
-        imageUrl: "https://ibb.co/bjymc3Yd"
-      },
-
-      {
-        no: 11, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/rGpdchHw",
-        imageUrl: "https://ibb.co/rGpdchHw"
-      },
-
-      {
-        no: 12, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/r2d9ssg8",
-        imageUrl: "https://ibb.co/r2d9ssg8"
-      },
-
-      {
-        no: 13, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/0jBxkRZC",
-        imageUrl: "https://ibb.co/0jBxkRZC"
-      },
-
-      {
-        no: 14, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/HfnQhLmk",
-        imageUrl: "https://ibb.co/HfnQhLmk"
-      },
-
-      {
-        no: 15, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/jPCrxHPf",
-        imageUrl: "https://ibb.co/jPCrxHPf"
-      },
-
-      {
-        no: 16, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/s9TfB85Z",
-        imageUrl: "://ibb.co/s9TfB85Z"
-      },
-
-      {
-        no: 17, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/TD23gpp2",
-        imageUrl: "https://ibb.co/TD23gpp2"
-      },
-
-      {
-        no: 18, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/mV8xf1KK",
-        imageUrl: "https://ibb.co/mV8xf1KK"
-      },
-
-      {
-        no: 19, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/tPWjBSpm",
-        imageUrl: "https://ibb.co/tPWjBSpm"
-      },
-
-      {
-        no: 20, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/QvQqxZMx",
-        imageUrl: "https://ibb.co/QvQqxZMx"
-      },
-
-      {
-        no: 21, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/LXSc8y1m",
-        imageUrl: "https://ibb.co/LXSc8y1m"
-      },
-
-      {
-        no: 22, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/DfjX0jyK",
-        imageUrl: "https://ibb.co/DfjX0jyK"
-      },
-
-      {
-        no: 23, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/5htGz6zq",
-        imageUrl: "https://ibb.co/5htGz6zq"
-      },
-
-      {
-        no: 24, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/pvn7R31b",
-        imageUrl: "https://ibb.co/pvn7R31b"
-      },
-
-      {
-        no: 25, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/NnfLtqwy",
-        imageUrl: "https://ibb.co/NnfLtqwy"
-      },
-
-      {
-        no: 26, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/QFGDHjX0",
-        imageUrl: "https://ibb.co/QFGDHjX0"
-      },
-
-      {
-        no: 27, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/mFbmYp8X",
-        imageUrl: "https://ibb.co/mFbmYp8X"
-      },
-
-      {
-        no: 28, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/JWKP8bs6",
-        imageUrl: "https://ibb.co/JWKP8bs6"
-      },
-
-      {
-        no: 29, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/SL7M7YC",
-        imageUrl: "https://ibb.co/SL7M7YC"
-      },
-
-      {
-        no: 30, KAOS LENGAN PENDEK
-        price: "$20.00",
-        link: "https://ibb.co/5gDZTk5d",
-        imageUrl: "https://ibb.co/5gDZTk5d"
-
-       {
-        no: 31, CELANA JOGER HITAM POLOS
-        price: "$18.00",
-        link: "https://ibb.co/TDdKq3LT",
-        imageUrl: "https://ibb.co/TDdKq3LT"
-        },
-        
-       {
-        no: 32, CELANA JOGER ABUABU
-        price: "$18.00",
-        link: "https://ibb.co/V0pyPxTJ",
-        imageUrl: "https://ibb.co/V0pyPxTJ"
-      },
-          
-      {
-        no: 33, CELANA JOGER PUTIH
-        price: "$18.00",
-        link: "https://ibb.co/Zp3DctF3",
-        imageUrl: "https://ibb.co/Zp3DctF3"
-      },           
-      }
-
-    ];
-
-
-    function renderProducts(data) {
-
-      const productList = document.getElementById("productList");
-
-      productList.innerHTML = "";
-
-      data.forEach(product => {
-
-        const card = document.createElement("div");
-
-        card.className = "card";
-
-        let imageContent = "";
-
-        if (product.imageUrl) {
-
-          imageContent = `
-            <img
-              src="${product.imageUrl}"
-              alt="Produk ${product.no}"
-              loading="lazy"
-            >
-          `;
-
-        } else {
-
-          imageContent = `
-            <div class="image-placeholder">
-              <span class="icon">🖼️</span>
-              <div>Gambar Produk ${product.no}</div>
-              <small>Klik tombol di bawah untuk melihat gambar</small>
-            </div>
-          `;
-
-        }
-
-        card.innerHTML = `
-
-          <div class="image-box">
-            ${imageContent}
-          </div>
-
-          <div class="card-content">
-
-            <div class="item-number">
-              ITEM #${product.no}
-            </div>
-
-            <h3>
-              Produk ${product.no}
-            </h3>
-
-            <div class="price-label">
-              HARGA
-            </div>
-
-            <div class="price">
-              ${product.price}
-            </div>
-
-            <div class="buttons">
-
-              <a
-                class="btn btn-view"
-                href="${product.link}"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                🖼️ Buka Gambar
-              </a>
-
-              <button
-                class="btn btn-price"
-                onclick="copyLink('${product.link}')"
-              >
-                🔗 Salin
-              </button>
-
-            </div>
-
-          </div>
-
-        `;
-
-        productList.appendChild(card);
-
-      });
-
-      document.getElementById("totalItems").textContent = data.length;
-
-    }
-
-
-    function searchProducts() {
-
-      const keyword =
-        document
-        .getElementById("searchInput")
-        .value
-        .toLowerCase();
-
-      const filtered =
-        products.filter(product =>
-          String(product.no).includes(keyword)
-        );
-
-      renderProducts(filtered);
-
-    }
-
-
-    function copyLink(link) {
-
-      navigator.clipboard.writeText(link)
-        .then(() => {
-          alert("Link berhasil disalin!");
-        })
-        .catch(() => {
-          alert("Gagal menyalin link.");
-        });
-
-    }
-
-
-    // Tampilkan semua produk saat halaman dibuka
-    renderProducts(products);
-
-  </script>
-
 </body>
 </html>
-```
