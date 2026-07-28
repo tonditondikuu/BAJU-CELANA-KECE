@@ -1,271 +1,616 @@
+```html
 <!DOCTYPE html>
-
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SimpleWear - Toko Baju</title>
+
+  <title>Gallery Produk</title>
+
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: Arial, sans-serif;
     }
 
-```
-body {
-  background: #f7f7f7;
-  color: #222;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);
+      min-height: 100vh;
+      color: #fff;
+    }
 
-header {
-  background: #111;
-  color: white;
-  padding: 20px 7%;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
+    .container {
+      width: 95%;
+      max-width: 1400px;
+      margin: auto;
+      padding: 30px 0 50px;
+    }
 
-.logo {
-  font-size: 25px;
-  font-weight: bold;
-  letter-spacing: 1px;
-}
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 20px;
-  font-size: 14px;
-}
+    header h1 {
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #38bdf8, #a78bfa, #f472b6);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-.hero {
-  min-height: 430px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #ffffff, #eaeaea);
-}
+    header p {
+      color: #cbd5e1;
+      font-size: 16px;
+    }
 
-.hero h1 {
-  font-size: 48px;
-  margin-bottom: 15px;
-}
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 25px;
+      flex-wrap: wrap;
+    }
 
-.hero p {
-  color: #666;
-  font-size: 18px;
-  margin-bottom: 25px;
-}
+    .search-box {
+      flex: 1;
+      min-width: 250px;
+    }
 
-.btn {
-  display: inline-block;
-  background: #111;
-  color: white;
-  padding: 13px 25px;
-  border-radius: 8px;
-  text-decoration: none;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-}
+    .search-box input {
+      width: 100%;
+      padding: 14px 18px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 12px;
+      background: rgba(255,255,255,0.08);
+      color: white;
+      outline: none;
+      font-size: 15px;
+      backdrop-filter: blur(10px);
+    }
 
-.products {
-  padding: 60px 7%;
-}
+    .search-box input::placeholder {
+      color: #cbd5e1;
+    }
 
-.section-title {
-  text-align: center;
-  margin-bottom: 35px;
-}
+    .total {
+      padding: 13px 20px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.1);
+      color: #e2e8f0;
+      white-space: nowrap;
+    }
 
-.section-title h2 {
-  font-size: 30px;
-  margin-bottom: 8px;
-}
+    .products {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 22px;
+    }
 
-.section-title p {
-  color: #777;
-}
+    .card {
+      background: rgba(255,255,255,0.09);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+      backdrop-filter: blur(12px);
+      transition: 0.3s ease;
+    }
 
-.product-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-}
+    .card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+    }
 
-.product {
-  background: white;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px rgba(0,0,0,0.07);
-  transition: 0.3s;
-}
+    .image-box {
+      height: 220px;
+      background: linear-gradient(135deg, #1e293b, #334155);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
 
-.product:hover {
-  transform: translateY(-5px);
-}
+    .image-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
 
-.product img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
+    .image-placeholder {
+      text-align: center;
+      padding: 20px;
+      color: #cbd5e1;
+    }
 
-.product-info {
-  padding: 20px;
-}
+    .image-placeholder .icon {
+      font-size: 45px;
+      display: block;
+      margin-bottom: 10px;
+    }
 
-.product-info h3 {
-  margin-bottom: 8px;
-}
+    .card-content {
+      padding: 20px;
+    }
 
-.price {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 15px;
-}
+    .item-number {
+      color: #94a3b8;
+      font-size: 13px;
+      margin-bottom: 7px;
+    }
 
-.buy-btn {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 7px;
-  background: #111;
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
+    .card h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
 
-.buy-btn:hover {
-  background: #333;
-}
+    .price-label {
+      color: #94a3b8;
+      font-size: 12px;
+      margin-bottom: 4px;
+    }
 
-footer {
-  background: #111;
-  color: white;
-  text-align: center;
-  padding: 25px;
-  margin-top: 30px;
-}
+    .price {
+      color: #4ade80;
+      font-size: 23px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
 
-@media (max-width: 600px) {
-  header {
-    padding: 15px 5%;
-  }
+    .buttons {
+      display: flex;
+      gap: 10px;
+    }
 
-  nav a {
-    margin-left: 10px;
-    font-size: 12px;
-  }
+    .btn {
+      flex: 1;
+      text-align: center;
+      text-decoration: none;
+      padding: 12px 10px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 14px;
+      transition: 0.25s;
+    }
 
-  .hero h1 {
-    font-size: 35px;
-  }
-}
-```
+    .btn-view {
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: white;
+    }
 
+    .btn-view:hover {
+      transform: scale(1.03);
+    }
+
+    .btn-price {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    footer {
+      text-align: center;
+      color: #94a3b8;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: 92%;
+        padding-top: 20px;
+      }
+
+      header h1 {
+        font-size: 28px;
+      }
+
+      .products {
+        grid-template-columns: 1fr;
+      }
+
+      .image-box {
+        height: 240px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">SIMPLEWEAR</div>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#produk">Produk</a>
-    <a href="#kontak">Kontak</a>
-  </nav>
-</header>
+  <div class="container">
 
-<section class="hero" id="home">
-  <div>
-    <h1>Style Simple, Tetap Keren</h1>
-    <p>Koleksi baju pilihan dengan desain modern dan nyaman dipakai.</p>
-    <a href="#produk" class="btn">Lihat Produk</a>
-  </div>
-</section>
+    <header>
+      <h1>PRODUCT GALLERY</h1>
+      <p>Daftar Produk & Harga</p>
+    </header>
 
-<section class="products" id="produk">
-  <div class="section-title">
-    <h2>Produk Terbaru</h2>
-    <p>Pilih gaya favorit kamu hari ini</p>
-  </div>
+    <div class="toolbar">
+      <div class="search-box">
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Cari produk berdasarkan nomor..."
+          onkeyup="searchProducts()"
+        >
+      </div>
 
-  <div class="product-grid">
+      <div class="total">
+        Total: <strong id="totalItems">30</strong> Item
+      </div>
+    </div>
 
+    <div class="products" id="productList"></div>
 
-<div class="product">
-  <img src="httpshttps://ibb.co/gLpkG36V" alt="Kaos Basic">
-    <h3>Kaos Basic Premium</h3>
-    <div class="price">Rp 99.000</div>
-    <button class="buy-btn" onclick="beli('Kaos Basic Premium')">
-      Beli Sekarang
-    </button>
-  </div>
-</div>
-
-<div class="product">
-  <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=600&q=80" alt="Hoodie">
-  <div class="product-info">
-    <h3>Hoodie Casual</h3>
-    <div class="price">Rp 199.000</div>
-    <button class="buy-btn" onclick="beli('Hoodie Casual')">
-      Beli Sekarang
-    </button>
-  </div>
-</div>
-
-<div class="product">
-  <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=600&q=80" alt="Kemeja">
-  <div class="product-info">
-    <h3>Kemeja Casual</h3>
-    <div class="price">Rp 159.000</div>
-    <button class="buy-btn" onclick="beli('Kemeja Casual')">
-      Beli Sekarang
-    </button>
-  </div>
-</div>
-
-<div class="product">
-  <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=600&q=80" alt="Jaket">
-  <div class="product-info">
-    <h3>Jaket Streetwear</h3>
-    <div class="price">Rp 249.000</div>
-    <button class="buy-btn" onclick="beli('Jaket Streetwear')">
-      Beli Sekarang
-    </button>
-  </div>
-</div>
-
+    <footer>
+      © 2026 Product Gallery — All Rights Reserved
+    </footer>
 
   </div>
-</section>
 
-<footer id="kontak">
-  <p>© 2026 SIMPLEWEAR. Semua Hak Dilindungi.</p>
-  <p style="margin-top:8px;">Order melalui WhatsApp</p>
-</footer>
+  <script>
 
-<script>
-  function beli(produk) {
-    const nomorWhatsApp = "6281234567890";
+    /*
+      CATATAN:
+      Link ibb.co adalah link halaman ImgBB.
+      Untuk menampilkan gambar otomatis, masukkan
+      URL GAMBAR LANGSUNG ke bagian imageUrl.
 
-    const pesan = `Halo SIMPLEWEAR, saya ingin membeli produk: ${produk}`;
+      Contoh:
+      imageUrl: "https://i.ibb.co/xxxxx/nama-gambar.jpg"
 
-    const url = `https://wa.me/${nomorWhatsApp}?text=${encodeURIComponent(pesan)}`;
+      Jika imageUrl kosong, kartu akan menampilkan
+      placeholder dan tombol "Buka Gambar".
+    */
 
-    window.open(url, "_blank");
-  }
-</script>
+    const products = [
+
+      {
+        no: 1,
+        price: "£0.00",
+        link: "https://ibb.co/gLpkG36V",
+        imageUrl: ""
+      },
+
+      {
+        no: 2,
+        price: "£0.00",
+        link: "https://ibb.co/BVMbn55W",
+        imageUrl: ""
+      },
+
+      {
+        no: 3,
+        price: "£0.00",
+        link: "https://ibb.co/Lh6Dqbsw",
+        imageUrl: ""
+      },
+
+      {
+        no: 4,
+        price: "£0.00",
+        link: "https://ibb.co/8gMZLntp",
+        imageUrl: ""
+      },
+
+      {
+        no: 5,
+        price: "£0.00",
+        link: "https://ibb.co/Lh6Dqbsw",
+        imageUrl: ""
+      },
+
+      {
+        no: 6,
+        price: "£0.00",
+        link: "https://ibb.co/ns4266gM",
+        imageUrl: ""
+      },
+
+      {
+        no: 7,
+        price: "£0.00",
+        link: "https://ibb.co/xKWWfHLQ",
+        imageUrl: ""
+      },
+
+      {
+        no: 8,
+        price: "£0.00",
+        link: "https://ibb.co/Sh0HDBc",
+        imageUrl: ""
+      },
+
+      {
+        no: 9,
+        price: "£0.00",
+        link: "https://ibb.co/JwRY2tyj",
+        imageUrl: ""
+      },
+
+      {
+        no: 10,
+        price: "£0.00",
+        link: "https://ibb.co/bjymc3Yd",
+        imageUrl: ""
+      },
+
+      {
+        no: 11,
+        price: "£0.00",
+        link: "https://ibb.co/rGpdchHw",
+        imageUrl: ""
+      },
+
+      {
+        no: 12,
+        price: "£0.00",
+        link: "https://ibb.co/r2d9ssg8",
+        imageUrl: ""
+      },
+
+      {
+        no: 13,
+        price: "£0.00",
+        link: "https://ibb.co/0jBxkRZC",
+        imageUrl: ""
+      },
+
+      {
+        no: 14,
+        price: "£0.00",
+        link: "https://ibb.co/HfnQhLmk",
+        imageUrl: ""
+      },
+
+      {
+        no: 15,
+        price: "£0.00",
+        link: "https://ibb.co/jPCrxHPf",
+        imageUrl: ""
+      },
+
+      {
+        no: 16,
+        price: "£0.00",
+        link: "https://ibb.co/s9TfB85Z",
+        imageUrl: ""
+      },
+
+      {
+        no: 17,
+        price: "£0.00",
+        link: "https://ibb.co/TD23gpp2",
+        imageUrl: ""
+      },
+
+      {
+        no: 18,
+        price: "£0.00",
+        link: "https://ibb.co/mV8xf1KK",
+        imageUrl: ""
+      },
+
+      {
+        no: 19,
+        price: "£0.00",
+        link: "https://ibb.co/tPWjBSpm",
+        imageUrl: ""
+      },
+
+      {
+        no: 20,
+        price: "£0.00",
+        link: "https://ibb.co/QvQqxZMx",
+        imageUrl: ""
+      },
+
+      {
+        no: 21,
+        price: "£0.00",
+        link: "https://ibb.co/LXSc8y1m",
+        imageUrl: ""
+      },
+
+      {
+        no: 22,
+        price: "£0.00",
+        link: "https://ibb.co/DfjX0jyK",
+        imageUrl: ""
+      },
+
+      {
+        no: 23,
+        price: "£0.00",
+        link: "https://ibb.co/5htGz6zq",
+        imageUrl: ""
+      },
+
+      {
+        no: 24,
+        price: "£0.00",
+        link: "https://ibb.co/pvn7R31b",
+        imageUrl: ""
+      },
+
+      {
+        no: 25,
+        price: "£0.00",
+        link: "https://ibb.co/NnfLtqwy",
+        imageUrl: ""
+      },
+
+      {
+        no: 26,
+        price: "£0.00",
+        link: "https://ibb.co/QFGDHjX0",
+        imageUrl: ""
+      },
+
+      {
+        no: 27,
+        price: "£0.00",
+        link: "https://ibb.co/mFbmYp8X",
+        imageUrl: ""
+      },
+
+      {
+        no: 28,
+        price: "£0.00",
+        link: "https://ibb.co/JWKP8bs6",
+        imageUrl: ""
+      },
+
+      {
+        no: 29,
+        price: "£0.00",
+        link: "https://ibb.co/SL7M7YC",
+        imageUrl: ""
+      },
+
+      {
+        no: 30,
+        price: "£0.00",
+        link: "https://ibb.co/5gDZTk5d",
+        imageUrl: ""
+      }
+
+    ];
+
+
+    function renderProducts(data) {
+
+      const productList = document.getElementById("productList");
+
+      productList.innerHTML = "";
+
+      data.forEach(product => {
+
+        const card = document.createElement("div");
+
+        card.className = "card";
+
+        let imageContent = "";
+
+        if (product.imageUrl) {
+
+          imageContent = `
+            <img
+              src="${product.imageUrl}"
+              alt="Produk ${product.no}"
+              loading="lazy"
+            >
+          `;
+
+        } else {
+
+          imageContent = `
+            <div class="image-placeholder">
+              <span class="icon">🖼️</span>
+              <div>Gambar Produk ${product.no}</div>
+              <small>Klik tombol di bawah untuk melihat gambar</small>
+            </div>
+          `;
+
+        }
+
+        card.innerHTML = `
+
+          <div class="image-box">
+            ${imageContent}
+          </div>
+
+          <div class="card-content">
+
+            <div class="item-number">
+              ITEM #${product.no}
+            </div>
+
+            <h3>
+              Produk ${product.no}
+            </h3>
+
+            <div class="price-label">
+              HARGA
+            </div>
+
+            <div class="price">
+              ${product.price}
+            </div>
+
+            <div class="buttons">
+
+              <a
+                class="btn btn-view"
+                href="${product.link}"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                🖼️ Buka Gambar
+              </a>
+
+              <button
+                class="btn btn-price"
+                onclick="copyLink('${product.link}')"
+              >
+                🔗 Salin
+              </button>
+
+            </div>
+
+          </div>
+
+        `;
+
+        productList.appendChild(card);
+
+      });
+
+      document.getElementById("totalItems").textContent = data.length;
+
+    }
+
+
+    function searchProducts() {
+
+      const keyword =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase();
+
+      const filtered =
+        products.filter(product =>
+          String(product.no).includes(keyword)
+        );
+
+      renderProducts(filtered);
+
+    }
+
+
+    function copyLink(link) {
+
+      navigator.clipboard.writeText(link)
+        .then(() => {
+          alert("Link berhasil disalin!");
+        })
+        .catch(() => {
+          alert("Gagal menyalin link.");
+        });
+
+    }
+
+
+    // Tampilkan semua produk saat halaman dibuka
+    renderProducts(products);
+
+  </script>
 
 </body>
 </html>
+```
